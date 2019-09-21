@@ -10,10 +10,14 @@ class Pokemon
   
   def self.save(name, type, db)
     db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
-    
-    #id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
-    
-    #pokemon = Pokemon.new(id: id, name: name, type: type, db: db)
+  end
+  
+  def self.find(id, db)
+    sql = <<-SQL
+      SELECT * FROM pokemon
+      WHERE id = ?
+      SQL
+    db.execute(sql, id)
   end
   
 end
