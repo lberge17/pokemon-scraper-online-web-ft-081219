@@ -9,7 +9,7 @@ class Pokemon
   end
   
   def self.save(name, type, db)
-    id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+    id = db[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
     pokemon = Pokemon.new(id, name, type, db)
   end
   
